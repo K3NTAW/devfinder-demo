@@ -45,15 +45,15 @@ const sampleFiles: FileItem[] = [
 
 const DevFinderPreview = () => {
   const [showTerminal, setShowTerminal] = useState(true);
-  const [currentPath, setCurrentPath] = useState(['devfinder']);
+  const [currentPath, setCurrentPath] = useState(['']);
   const [terminalInput, setTerminalInput] = useState('');
-  const [terminalHistory, setTerminalHistory] = useState<Array<{command: string, output: string}>>([]);
+  const [terminalHistory, setTerminalHistory] = useState<Array<{command: string, output: string, path: string[]}>>([]);
   const terminalInputRef = useRef<HTMLInputElement>(null);
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 't') {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         setShowTerminal(prev => !prev);
       }
@@ -62,12 +62,6 @@ const DevFinderPreview = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
-
-  useEffect(() => {
-    if (terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [terminalHistory]);
 
   const handleTerminalSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,7 +102,7 @@ const DevFinderPreview = () => {
       output = `command not found: ${command}`;
     }
 
-    setTerminalHistory(prev => [...prev, { command, output }]);
+    setTerminalHistory(prev => [...prev, { command, output, path: [...currentPath] }]);
     setTerminalInput('');
   };
 
@@ -153,11 +147,11 @@ const DevFinderPreview = () => {
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-[10px] text-white/50 font-mono group-hover:text-white/70 transition-colors">
-                ⌘T
+                ⌘K
               </span>
             </div>
           </button>
-          <div className="text-gray-300 text-sm font-mono">~/{currentPath.join('/')}</div>
+          <div className="text-gray-300 text-sm font-mono">~/devfinder{currentPath.join('/')}</div>
         </div>
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -175,8 +169,9 @@ const DevFinderPreview = () => {
               <div className="flex-grow overflow-y-auto">
                 {terminalHistory.map((item, index) => (
                   <div key={index} className="mb-1">
-                    <span className="text-green-400">$</span>{' '}
-                    <span className="text-white">{item.command}</span>
+                    <span className="text-green-400">$</span>
+                    <span className="text-blue-400 ml-2">~/devfinder{item.path.join('/')}</span>
+                    <span className="text-white ml-2">{item.command}</span>
                     {item.output && (
                       <div className="text-gray-300 mt-1 whitespace-pre">{item.output}</div>
                     )}
@@ -186,6 +181,7 @@ const DevFinderPreview = () => {
               </div>
               <form onSubmit={handleTerminalSubmit} className="flex items-center">
                 <span className="text-green-400">$</span>
+                <span className="text-blue-400 ml-2">~/devfinder{currentPath.join('/')}</span>
                 <input
                   ref={terminalInputRef}
                   type="text"
@@ -231,19 +227,22 @@ const DevFinderPreview = () => {
             <div className="flex-1 p-4">
               {/* Path Bar */}
               <div className="flex items-center space-x-1 text-gray-400 text-sm mb-4">
+                <span className="text-gray-300 hover:text-white cursor-pointer" onClick={() => setCurrentPath([''])}>~/devfinder</span>
                 {currentPath.map((dir, index) => (
                   <React.Fragment key={index}>
-                    {index > 0 && (
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                    {dir && (
+                      <>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                        <span 
+                          className="hover:text-gray-300 cursor-pointer"
+                          onClick={() => setCurrentPath(currentPath.slice(0, index + 1))}
+                        >
+                          {dir}
+                        </span>
+                      </>
                     )}
-                    <span 
-                      className="hover:text-gray-300 cursor-pointer"
-                      onClick={() => setCurrentPath(currentPath.slice(0, index + 1))}
-                    >
-                      {dir}
-                    </span>
                   </React.Fragment>
                 ))}
               </div>
