@@ -29,7 +29,7 @@ export default function BetaSignupForm() {
       setMessage('Thanks for signing up! We\'ll be in touch soon.')
       setEmail('')
       setName('')
-    } catch (error) {
+    } catch {
       setStatus('error')
       setMessage('Something went wrong. Please try again.')
     }

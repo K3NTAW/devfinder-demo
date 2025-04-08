@@ -11,9 +11,9 @@ export async function POST(request: Request) {
     })
 
     return NextResponse.json(signup)
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      { error: 'Failed to process signup' },
+      { error: 'Failed to save beta signup' },
       { status: 500 }
     )
   }
