@@ -151,7 +151,7 @@ const DevFinderPreview = () => {
               </span>
             </div>
           </button>
-          <div className="text-gray-300 text-sm font-mono">~/devfinder{currentPath.join('/')}</div>
+          <div className="text-gray-300 text-sm font-mono">~/navium{currentPath.join('/')}</div>
         </div>
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -170,7 +170,7 @@ const DevFinderPreview = () => {
                 {terminalHistory.map((item, index) => (
                   <div key={index} className="mb-1">
                     <span className="text-green-400">$</span>
-                    <span className="text-blue-400 ml-2">~/devfinder{item.path.join('/')}</span>
+                    <span className="text-blue-400 ml-2">~/navium{item.path.join('/')}</span>
                     <span className="text-white ml-2">{item.command}</span>
                     {item.output && (
                       <div className="text-gray-300 mt-1 whitespace-pre">{item.output}</div>
@@ -181,7 +181,7 @@ const DevFinderPreview = () => {
               </div>
               <form onSubmit={handleTerminalSubmit} className="flex items-center">
                 <span className="text-green-400">$</span>
-                <span className="text-blue-400 ml-2">~/devfinder{currentPath.join('/')}</span>
+                <span className="text-blue-400 ml-2">~/navium{currentPath.join('/')}</span>
                 <input
                   ref={terminalInputRef}
                   type="text"
@@ -227,7 +227,7 @@ const DevFinderPreview = () => {
             <div className="flex-1 p-4">
               {/* Path Bar */}
               <div className="flex items-center space-x-1 text-gray-400 text-sm mb-4">
-                <span className="text-gray-300 hover:text-white cursor-pointer" onClick={() => setCurrentPath([''])}>~/devfinder</span>
+                <span className="text-gray-300 hover:text-white cursor-pointer" onClick={() => setCurrentPath([''])}>~/navium</span>
                 {currentPath.map((dir, index) => (
                   <React.Fragment key={index}>
                     {dir && (
