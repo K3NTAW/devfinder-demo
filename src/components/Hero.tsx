@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 to-white">
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8 relative">
           <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             The Developer&apos;s File Explorer
           </h1>
@@ -26,6 +26,25 @@ const Hero = () => {
             </a>
           </div>
         </div>
+        
+        {/* Arrow pointing to preview */}
+        <div className="hidden lg:flex absolute left-[45%] top-[45%] -translate-y-1/2 items-center gap-3">
+          <div className="text-lg font-semibold text-indigo-600">Try it out!</div>
+          <svg 
+            className="w-8 h-8 text-indigo-600 animate-bounce-right" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M14 5l7 7-7 7" 
+            />
+          </svg>
+        </div>
+
         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
           <div className="w-[600px]">
             <div className="rounded-xl bg-white/5 p-2 ring-1 ring-white/10 lg:-m-4 lg:rounded-2xl lg:p-4">
