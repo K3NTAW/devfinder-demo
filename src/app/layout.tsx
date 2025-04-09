@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DevFinder - The Developer's File Explorer",
+  title: "Navium - The Developer's File Explorer",
   description: "A modern file explorer and terminal hybrid designed specifically for developers. Experience the perfect blend of command-line power and visual file management.",
 };
 

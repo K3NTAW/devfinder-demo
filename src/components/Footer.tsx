@@ -17,7 +17,7 @@ const Footer = () => {
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
           <p className="text-center text-xs leading-5 text-gray-500">
-            &copy; {new Date().getFullYear()} DevFinder. All rights reserved.
+            &copy; {new Date().getFullYear()} Navium. All rights reserved.
           </p>
         </div>
       </div>

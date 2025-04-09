@@ -14,8 +14,8 @@ const Navigation = () => {
         <div className="flex h-16 justify-between">
           <div className="flex">
             <div className="flex flex-shrink-0 items-center">
-              <Link href="/" className="text-xl font-bold text-indigo-600">
-                DevFinder
+              <Link href="/" className="text-2xl font-bold text-indigo-600">
+                Navium
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

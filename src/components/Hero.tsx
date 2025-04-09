@@ -11,8 +11,8 @@ const Hero = () => {
           <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             The Developer&apos;s File Explorer
           </h1>
-          <p className="mt-6 text-xl leading-8 text-gray-600">
-            Experience the perfect blend of command-line power and visual file management. DevFinder brings the best of both worlds to your development workflow.
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            Experience the perfect blend of command-line power and visual file management. Navium brings the best of both worlds to your development workflow.
           </p>
           <div className="mt-10 flex items-center gap-x-6">
             <a

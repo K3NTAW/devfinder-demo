@@ -1,9 +1,10 @@
 import Features from '@/components/Features';
+import { Metadata } from 'next';
 
 const additionalFeatures = [
   {
     name: 'Customizable Interface',
-    description: 'Tailor DevFinder to your workflow with customizable themes, layouts, and keyboard shortcuts.',
+    description: 'Tailor Navium to your workflow with customizable themes, layouts, and keyboard shortcuts.',
     details: [
       'Choose from popular developer themes like Dracula, One Dark, and Nord',
       'Customize the layout to prioritize either the terminal or file explorer',
@@ -40,10 +41,10 @@ export default function FeaturesPage() {
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
             <div className="text-center">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                DevFinder Features
+                Navium Features
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Discover how DevFinder can transform your development workflow with its powerful features and intuitive interface.
+                Discover how Navium can transform your development workflow with its powerful features and intuitive interface.
               </p>
             </div>
           </div>
@@ -83,4 +84,9 @@ export default function FeaturesPage() {
       </div>
     </main>
   );
-} 
+}
+
+export const metadata: Metadata = {
+  title: 'Features - Navium',
+  description: 'Tailor Navium to your workflow with customizable themes, layouts, and keyboard shortcuts.',
+}; 

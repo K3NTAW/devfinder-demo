@@ -1,4 +1,5 @@
 import BetaSignup from '@/components/BetaSignup';
+import { Metadata } from 'next';
 
 export default function BetaPage() {
   return (
@@ -8,10 +9,10 @@ export default function BetaPage() {
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
             <div className="text-center">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                Join the DevFinder Beta
+                Join the Navium Beta
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Be among the first to experience the future of developer file management. Help us shape DevFinder into the perfect tool for developers.
+                Be among the first to experience the future of developer file management. Help us shape Navium into the perfect tool for developers.
               </p>
             </div>
           </div>
@@ -24,4 +25,9 @@ export default function BetaPage() {
       </div>
     </main>
   );
-} 
+}
+
+export const metadata: Metadata = {
+  title: 'Join the Navium Beta',
+  description: 'Be among the first to experience the future of developer file management. Help us shape Navium into the perfect tool for developers.',
+}; 

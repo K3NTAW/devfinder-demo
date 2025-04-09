@@ -12,7 +12,7 @@ const Features = () => {
             Everything you need to manage your codebase
           </p>
           <p className="mt-4 text-base sm:text-lg leading-7 text-gray-600">
-            DevFinder combines the power of the command line with the convenience of a modern file explorer.
+            Navium combines the power of the command line with the convenience of a modern file explorer.
           </p>
         </div>
         <div className="mx-auto mt-8 sm:mt-12 lg:mt-16 max-w-2xl sm:max-w-4xl lg:max-w-none">
