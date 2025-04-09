@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -13,7 +14,15 @@ const Navigation = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex">
-            <div className="flex flex-shrink-0 items-center">
+            <div className="flex flex-shrink-0 items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="Navium Logo"
+                width={80}
+                height={80}
+                className="h-10 w-10"
+                priority
+              />
               <Link href="/" className="text-2xl font-bold text-indigo-600">
                 Navium
               </Link>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import Image from 'next/image';
 
 interface BetaSignupProps {
   variant?: 'home' | 'beta';
@@ -79,6 +80,16 @@ const BetaSignup = ({ variant = 'beta' }: BetaSignupProps) => {
 
   return (
     <div className={containerClasses}>
+      <div className="flex justify-center mb-6">
+        <Image
+          src="/logo.png"
+          alt="Navium Logo"
+          width={120}
+          height={120}
+          className="h-24 w-24"
+          priority
+        />
+      </div>
       <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Join the Beta</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
