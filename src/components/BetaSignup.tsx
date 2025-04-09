@@ -9,8 +9,6 @@ interface BetaSignupProps {
 
 const BetaSignup = ({ variant = 'beta' }: BetaSignupProps) => {
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [role, setRole] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -43,20 +41,21 @@ const BetaSignup = ({ variant = 'beta' }: BetaSignupProps) => {
       const { error } = await supabase
         .from('beta_signups')
         .insert([{ 
-          email, 
-          name, 
-          role,
+          email,
           created_at: new Date().toISOString()
         }]);
 
-      if (error) throw error;
+      if (error) {
+        if (error.code === '23505') {
+          throw new Error('This email is already registered for the beta.');
+        }
+        throw error;
+      }
       setSuccess(true);
       setEmail('');
-      setName('');
-      setRole('');
     } catch (error) {
       console.error('Signup error:', error);
-      setError('Failed to submit. Please try again.');
+      setError(error instanceof Error ? error.message : 'Failed to submit. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -83,20 +82,6 @@ const BetaSignup = ({ variant = 'beta' }: BetaSignupProps) => {
       <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Join the Beta</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-            Name
-          </label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className={inputClasses}
-            placeholder="Your name"
-          />
-        </div>
-        <div className="space-y-2">
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email
           </label>
@@ -109,24 +94,6 @@ const BetaSignup = ({ variant = 'beta' }: BetaSignupProps) => {
             className={inputClasses}
             placeholder="your@email.com"
           />
-        </div>
-        <div className="space-y-2">
-          <label htmlFor="role" className="block text-sm font-medium text-gray-700">
-            Role
-          </label>
-          <select
-            id="role"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            required
-            className={inputClasses}
-          >
-            <option value="" disabled>Select your role</option>
-            <option value="developer">Developer</option>
-            <option value="designer">Designer</option>
-            <option value="product_manager">Product Manager</option>
-            <option value="other">Other</option>
-          </select>
         </div>
         <button
           type="submit"
